@@ -7,13 +7,18 @@ public class StringCalculator {
         if (numbers.isEmpty()) {
             return 0;
         }
-        //step 1.2: Logic to pass test case having two numbers
+        //step 2: Logic to pass test case having unknown amount of numbers
         if (numbers.contains(",")) {
             String[] parts = numbers.split(",");
-            // Handle only 2 numbers
-            return Integer.parseInt(parts[0]) + Integer.parseInt(parts[1]);
+            int sum = 0;
+            // Handle unknown amount of numbers
+            for(String part : parts) {
+                sum += Integer.parseInt(part);
+            }
+            // return statement for many numbers
+            return sum;
         }
-        // return statement
+        // return statement for single number
         return Integer.parseInt(numbers);
     }
 }

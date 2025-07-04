@@ -29,7 +29,7 @@ public class StringCalculatorTest {
         assertEquals(3, result);
     }
 
-    // Step 2: Failing test cases for unknown amount of numbers
+    // Step 2: Test case passed for the input having unknown amount of numbers
     @Test
     public void returnSumWhenInputIsManyNumbersTestOne(){
         StringCalculator calculator = new StringCalculator();
