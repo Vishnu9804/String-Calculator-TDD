@@ -43,4 +43,12 @@ public class StringCalculatorTest {
         int resultForFourNumbers = calculator.add("6,11,3,4");
         assertEquals(24, resultForFourNumbers);
     }
+
+    // Step 3: Failing test case for input having numbers separated by comma and newline
+    @Test
+    public void returnSumWhenInputIsSeparatedByCommaAndNewLine() {
+        StringCalculator calculator = new StringCalculator();
+        int resultForFourNumbers = calculator.add("1\n2,3");
+        assertEquals(6, resultForFourNumbers);
+    }
 }
