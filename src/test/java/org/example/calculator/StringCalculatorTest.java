@@ -28,4 +28,19 @@ public class StringCalculatorTest {
         int result = calculator.add("1,2");
         assertEquals(3, result);
     }
+
+    // Step 2: Failing test cases for unknown amount of numbers
+    @Test
+    public void returnSumWhenInputIsManyNumbersTestOne(){
+        StringCalculator calculator = new StringCalculator();
+        int resultForThreeNumbers = calculator.add("1,2,3");
+        assertEquals(6, resultForThreeNumbers);
+    }
+
+    @Test
+    public void returnSumWhenInputIsManyNumbersTestTwo(){
+        StringCalculator calculator = new StringCalculator();
+        int resultForFourNumbers = calculator.add("6,11,3,4");
+        assertEquals(24, resultForFourNumbers);
+    }
 }
