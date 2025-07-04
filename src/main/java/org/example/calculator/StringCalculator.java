@@ -26,16 +26,19 @@ public class StringCalculator {
             if (delimiterSection.startsWith("[") && delimiterSection.endsWith("]")) {
                 // Extract multi-character delimiter inside [ ]
                 Matcher matcher = Pattern.compile("\\[(.*?)]").matcher(delimiterSection);
-                StringBuilder combinedDelimiters = new StringBuilder();
+                List<String> delimitersFound = new ArrayList<>();
 
                 while (matcher.find()) {
-                    if (!combinedDelimiters. isEmpty()) {
-                        combinedDelimiters.append("|");
-                    }
-                    combinedDelimiters.append(Pattern.quote(matcher.group(1)));
+                    delimitersFound.add(matcher.group(1));
                 }
 
-                delimiter = combinedDelimiters.toString(); // e.g., \*\*\* or \*\*\*|\+\+
+                if (delimitersFound.size() == 1) {
+                    // Exactly one delimiter inside brackets – use it
+                    delimiter = Pattern.quote(delimitersFound.get(0));
+                } else if (delimitersFound.isEmpty()) {
+                    // Fallback for single character delimiter like: //;
+                    delimiter = Pattern.quote(delimiterSection);
+                }
             } else {
                 delimiter = Pattern.quote(delimiterSection); // For single-character delimiter
             }
