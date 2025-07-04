@@ -21,7 +21,7 @@ public class StringCalculatorTest {
         assertEquals(1, result);
     }
 
-    // Step 1.2: Failing test case for the input having two numbers
+    // Step 1.2: Test case passed for two numbers
     @Test
     public void returnSumWhenInputIsTwoNumbers() {
         StringCalculator calculator = new StringCalculator();
