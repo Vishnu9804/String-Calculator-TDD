@@ -61,7 +61,7 @@ public class StringCalculatorTest {
         assertEquals(3, result);
     }
 
-    // Step 5: Failing test case for input having negative numbers
+    // Step 5: Test case passed for the input having negative numbers
     @Test
     public void throwExceptionWhenNegativeNumbersIsUsed() {
         StringCalculator calculator = new StringCalculator();

@@ -1,5 +1,7 @@
 package org.example.calculator;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
@@ -13,7 +15,7 @@ public class StringCalculator {
         String delimiter = "[,\n]";
         String numberSection = numbers;
 
-        // Step 6: Logic to pass custom delimiter input
+        // Step 4: Logic to pass custom delimiter input
         if(numbers.startsWith("//"))
         {
             String[] parts = numbers.split("\n",2); // Split String into two halves one for delimiter and one for numbers
@@ -23,10 +25,27 @@ public class StringCalculator {
         }
 
         String[] tokens = numberSection.split(delimiter);
+        List<String> negatives = new ArrayList<String>();
 
+        // Step 5: Logic store negatives and throw exception
         for (String token : tokens) {
-            sum += Integer.parseInt(token);
+            int num = Integer.parseInt(token);
+            if(num < 0)
+            {
+                negatives.add(String.valueOf(num));
+            }
+            else
+            {
+                sum += num;
+            }
         }
+
+        // Add every negative into throw message
+        if(!negatives.isEmpty())
+        {
+            throw new IllegalArgumentException("negatives not allowed "+ String.join(",", negatives));
+        }
+
         // return statement
         return sum;
     }
