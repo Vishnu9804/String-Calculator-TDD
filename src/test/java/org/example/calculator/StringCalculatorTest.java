@@ -72,4 +72,20 @@ public class StringCalculatorTest {
 
         assertEquals("negatives not allowed -2,-4", exception.getMessage());
     }
+
+    // Step 6: Failing test cases for number bigger than 1000
+    @Test
+    public void ignoreWhenGreaterThan1000TestOne() {
+        StringCalculator calculator = new StringCalculator();
+        int result = calculator.add("2,1001");
+        assertEquals(2, result);
+    }
+
+    // Just considering the Edge case of equals 1000
+    @Test
+    public void shouldIgnoreNumbersGreaterThan1000TestTwo() {
+        StringCalculator calculator = new StringCalculator();
+        int result = calculator.add("2,1000");
+        assertEquals(1002, result);
+    }
 }
