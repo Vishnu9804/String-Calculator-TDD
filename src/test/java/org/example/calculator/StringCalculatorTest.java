@@ -2,6 +2,7 @@ package org.example.calculator;
 
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 public class StringCalculatorTest {
 
@@ -58,5 +59,17 @@ public class StringCalculatorTest {
         StringCalculator calculator = new StringCalculator();
         int result = calculator.add("//;\n1;2");
         assertEquals(3, result);
+    }
+
+    // Step 5: Failing test case for input having negative numbers
+    @Test
+    public void throwExceptionWhenNegativeNumbersIsUsed() {
+        StringCalculator calculator = new StringCalculator();
+
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            calculator.add("1,-2,3,-4");
+        });
+
+        assertEquals("negatives not allowed -2,-4", exception.getMessage());
     }
 }
