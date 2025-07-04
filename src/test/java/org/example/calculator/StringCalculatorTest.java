@@ -103,4 +103,12 @@ public class StringCalculatorTest {
         int result = calculator.add("//[;;;]\n5;;;5;;;6");
         assertEquals(16, result);
     }
+
+    // Step 8: Failing test case for input having multiple custom delimiter
+    @Test
+    public void returnSumWhenMultipleCustomDelimiterIsUsed() {
+        StringCalculator calculator = new StringCalculator();
+        int result = calculator.add("//[*][%]\n1*2%3");
+        assertEquals(6, result);
+    }
 }
