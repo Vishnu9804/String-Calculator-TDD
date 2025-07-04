@@ -51,4 +51,12 @@ public class StringCalculatorTest {
         int resultForFourNumbers = calculator.add("1\n2,3");
         assertEquals(6, resultForFourNumbers);
     }
+
+    // Step 4: Failing test case for custom delimiter
+    @Test
+    public void returnSumWhenCustomDelimiterIsUsed() {
+        StringCalculator calculator = new StringCalculator();
+        int result = calculator.add("//;\n1;2");
+        assertEquals(3, result);
+    }
 }
