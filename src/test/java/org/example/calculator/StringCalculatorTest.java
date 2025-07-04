@@ -52,7 +52,7 @@ public class StringCalculatorTest {
         assertEquals(6, resultForFourNumbers);
     }
 
-    // Step 4: Failing test case for custom delimiter
+    // Step 4: Test case passed for custom delimiter
     @Test
     public void returnSumWhenCustomDelimiterIsUsed() {
         StringCalculator calculator = new StringCalculator();
