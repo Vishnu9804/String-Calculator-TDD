@@ -73,7 +73,7 @@ public class StringCalculatorTest {
         assertEquals("negatives not allowed -2,-4", exception.getMessage());
     }
 
-    // Step 6: Failing test cases for number bigger than 1000
+    // Step 6: Test case passed for input having numbers greater than 1000
     @Test
     public void ignoreWhenGreaterThan1000TestOne() {
         StringCalculator calculator = new StringCalculator();

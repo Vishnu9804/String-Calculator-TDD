@@ -15,7 +15,6 @@ public class StringCalculator {
         String delimiter = "[,\n]";
         String numberSection = numbers;
 
-        // Step 4: Logic to pass custom delimiter input
         if(numbers.startsWith("//"))
         {
             String[] parts = numbers.split("\n",2); // Split String into two halves one for delimiter and one for numbers
@@ -27,14 +26,13 @@ public class StringCalculator {
         String[] tokens = numberSection.split(delimiter);
         List<String> negatives = new ArrayList<String>();
 
-        // Step 5: Logic store negatives and throw exception
         for (String token : tokens) {
             int num = Integer.parseInt(token);
             if(num < 0)
             {
                 negatives.add(String.valueOf(num));
             }
-            else
+            else if(num <= 1000) // Step 6: Logic to ignore numbers greater than 1000
             {
                 sum += num;
             }
