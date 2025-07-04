@@ -89,7 +89,7 @@ public class StringCalculatorTest {
         assertEquals(1002, result);
     }
 
-    // Step 7: Failing test case for the input having delimiter with any length
+    // Step 7: Test case passed for input having delimiter of any length
     @Test
     public void returnSumWhenDelimiterIsOfAnyLengthTestOne() {
         StringCalculator calculator = new StringCalculator();
