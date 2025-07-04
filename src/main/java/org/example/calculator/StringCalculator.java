@@ -21,10 +21,8 @@ public class StringCalculator {
             String delimiterSection = parts[0].substring(2); // Take out the custom delimiter section which is after "//"
             numberSection = parts[1]; // Actual number part
 
-            // Step 7: Logic to pass test case having delimiter with any length
-
+            // Step 8: Logic to pass test case having multiple custom delimiter
             if (delimiterSection.startsWith("[") && delimiterSection.endsWith("]")) {
-                // Extract multi-character delimiter inside [ ]
                 Matcher matcher = Pattern.compile("\\[(.*?)]").matcher(delimiterSection);
                 List<String> delimitersFound = new ArrayList<>();
 
@@ -33,11 +31,26 @@ public class StringCalculator {
                 }
 
                 if (delimitersFound.size() == 1) {
-                    // Exactly one delimiter inside brackets – use it
+                    // Single delimiter → can be multi-char
                     delimiter = Pattern.quote(delimitersFound.get(0));
-                } else if (delimitersFound.isEmpty()) {
-                    // Fallback for single character delimiter like: //;
-                    delimiter = Pattern.quote(delimiterSection);
+                } else if (delimitersFound.size() > 1) {
+                    boolean allSingleChar = delimitersFound.stream().allMatch(d -> d.length() == 1);
+
+                    if (allSingleChar) {
+                        // All single-char delimiters allowed
+                        StringBuilder regexBuilder = new StringBuilder();
+                        for (int i = 0; i < delimitersFound.size(); i++) {
+                            if (i > 0) {
+                                regexBuilder.append("|");
+                            }
+                            regexBuilder.append(Pattern.quote(delimitersFound.get(i)));
+                        }
+                        delimiter = regexBuilder.toString();
+                    } else {
+                        // At least one is multi-character → Do NOT override default delimiter
+                        // This will cause incorrect splitting, hence test will naturally fail
+                        delimiter = "[,\n]";
+                    }
                 }
             } else {
                 delimiter = Pattern.quote(delimiterSection); // For single-character delimiter

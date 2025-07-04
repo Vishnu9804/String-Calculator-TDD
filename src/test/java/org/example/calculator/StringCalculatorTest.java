@@ -104,7 +104,7 @@ public class StringCalculatorTest {
         assertEquals(16, result);
     }
 
-    // Step 8: Failing test case for input having multiple custom delimiter
+    // Step 8: Test passed for input having multiple custom delimiter
     @Test
     public void returnSumWhenMultipleCustomDelimiterIsUsed() {
         StringCalculator calculator = new StringCalculator();
