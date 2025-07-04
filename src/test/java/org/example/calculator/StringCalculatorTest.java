@@ -88,4 +88,19 @@ public class StringCalculatorTest {
         int result = calculator.add("2,1000");
         assertEquals(1002, result);
     }
+
+    // Step 7: Failing test case for the input having delimiter with any length
+    @Test
+    public void returnSumWhenDelimiterIsOfAnyLengthTestOne() {
+        StringCalculator calculator = new StringCalculator();
+        int result = calculator.add("//[***]\n1***2***3");
+        assertEquals(6, result);
+    }
+
+    @Test
+    public void returnSumWhenDelimiterIsOfAnyLengthTestTwo() {
+        StringCalculator calculator = new StringCalculator();
+        int result = calculator.add("//[;;;]\n5;;;5;;;6");
+        assertEquals(16, result);
+    }
 }
