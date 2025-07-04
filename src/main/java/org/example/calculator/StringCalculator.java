@@ -1,9 +1,13 @@
 package org.example.calculator;
 
 public class StringCalculator {
-    // Step 1: Bare minimum method for 1st step of TDD
+
+    // Step 1: Minimal logic to pass empty string test
     public int add(String numbers) {
-        // no logic yet — this will fail the test
+        if (numbers.isEmpty()) {
+            return 0;
+        }
+        // return statement just to satisfy method return type
         return -1;
     }
 }
