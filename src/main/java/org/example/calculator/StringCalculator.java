@@ -12,8 +12,7 @@ public class StringCalculator {
             return 0;
         }
         int sum = 0;
-
-        String delimiter = "[,\n]"; // Default delimiter
+        String delimiter = "[,\n]"; // Default delimiters
         String numberSection = numbers;
 
         if (numbers.startsWith("//")) {
@@ -21,7 +20,7 @@ public class StringCalculator {
             String delimiterSection = parts[0].substring(2); // Take out the custom delimiter section which is after "//"
             numberSection = parts[1]; // Actual number part
 
-            // Step 8: Logic to pass test case having multiple custom delimiter
+            // Step 9: Logic to pass test case for the input having multiple custom delimiter having length more than one character
             if (delimiterSection.startsWith("[") && delimiterSection.endsWith("]")) {
                 Matcher matcher = Pattern.compile("\\[(.*?)]").matcher(delimiterSection);
                 List<String> delimitersFound = new ArrayList<>();
@@ -31,26 +30,19 @@ public class StringCalculator {
                 }
 
                 if (delimitersFound.size() == 1) {
-                    // Single delimiter → can be multi-char
+                    // Single delimiter -> can be multi-char
                     delimiter = Pattern.quote(delimitersFound.get(0));
                 } else if (delimitersFound.size() > 1) {
-                    boolean allSingleChar = delimitersFound.stream().allMatch(d -> d.length() == 1);
+                    // Multiple delimiter -> now allowed to be of any length
 
-                    if (allSingleChar) {
-                        // All single-char delimiters allowed
-                        StringBuilder regexBuilder = new StringBuilder();
-                        for (int i = 0; i < delimitersFound.size(); i++) {
-                            if (i > 0) {
-                                regexBuilder.append("|");
-                            }
-                            regexBuilder.append(Pattern.quote(delimitersFound.get(i)));
+                    StringBuilder regexBuilder = new StringBuilder();
+                    for (int i = 0; i < delimitersFound.size(); i++) {
+                        if (i > 0) {
+                            regexBuilder.append("|");
                         }
-                        delimiter = regexBuilder.toString();
-                    } else {
-                        // At least one is multi-character → Do NOT override default delimiter
-                        // This will cause incorrect splitting, hence test will naturally fail
-                        delimiter = "[,\n]";
+                        regexBuilder.append(Pattern.quote(delimitersFound.get(i)));
                     }
+                    delimiter = regexBuilder.toString();
                 }
             } else {
                 delimiter = Pattern.quote(delimiterSection); // For single-character delimiter
@@ -66,18 +58,16 @@ public class StringCalculator {
             {
                 negatives.add(String.valueOf(num));
             }
-            else if(num <= 1000) // Logic to ignore numbers greater than 1000
+            else if(num <= 1000) // Ignore numbers greater than 1000
             {
                 sum += num;
             }
         }
-
         // Add every negative into throw message
         if(!negatives.isEmpty())
         {
             throw new IllegalArgumentException("negatives not allowed "+ String.join(",", negatives));
         }
-
         // return statement
         return sum;
     }
