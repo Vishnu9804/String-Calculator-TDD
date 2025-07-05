@@ -111,4 +111,12 @@ public class StringCalculatorTest {
         int result = calculator.add("//[*][%]\n1*2%3");
         assertEquals(6, result);
     }
+
+    // Step 9: Failing test case for the input having multiple custom delimiter having length more than one character
+    @Test
+    public void returnSumWhenMultipleCustomDelimiterIsUsedTemp() {
+        StringCalculator calculator = new StringCalculator();
+        int result = calculator.add("//[**][%%%]\n1**2%%%3");
+        assertEquals(6, result);
+    }
 }
